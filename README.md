@@ -1,6 +1,6 @@
 # WhatsappGroupMessager
 
-WhatsappGroupMessager is a chatbot for WhatsApp that allows you to automate tasks in WhatsApp groups.
+A quick project for a friend.
 
 ## Getting Started
 
