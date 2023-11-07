@@ -10,8 +10,9 @@ Follow these steps to set up and run the chatbot on your local machine:
 
 2. **Clone the Repository**: Clone your forked repository to your local machine using Git. Replace `<your-username>` with your GitHub username.
 
-   ```bash
-   git clone https://github.com/<your-username>/WhatsappGroupMessager.git
+```bash
+git clone https://github.com/<your-username>/WhatsappGroupMessager.git
+```
 
 3. Navigate to the project's directory
 ```bash
