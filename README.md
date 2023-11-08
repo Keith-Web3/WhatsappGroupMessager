@@ -22,10 +22,14 @@ git clone https://github.com/<your-username>/WhatsappGroupMessager.git
 ```bash
 npm install
 ```
-5. Run the Chatbot: Start the chatbot by running the following command:
+5. Change the MESSAGE variable in `index.js` to your desired message.
+```bash
+const MESSAGE = <"YOUR MESSAGE">
+```
+6. Run the Chatbot: Start the chatbot by running the following command:
 ```bash
 node index.js
 ```
-6. **Scan the QR Code**: The chatbot will generate a QR code. Scan this code with your WhatsApp mobile app to link your WhatsApp account with the chatbot.
+7. **Scan the QR Code**: The chatbot will generate a QR code. Scan this code with your WhatsApp mobile app to link your WhatsApp account with the chatbot.
 
-7. **Wait for the Bot to Start**: After scanning the QR code, the chatbot will begin running and performing its tasks in your WhatsApp groups.
+8. **Wait for the Bot to Start**: After scanning the QR code, the chatbot will begin running and performing its tasks in your WhatsApp groups.
