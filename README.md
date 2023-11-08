@@ -26,7 +26,7 @@ npm install
 ```bash
 const MESSAGE = <"YOUR MESSAGE">
 ```
-6. Run the Chatbot: Start the chatbot by running the following command:
+6. **Run the Chatbot**: Start the chatbot by running the following command:
 ```bash
 node index.js
 ```
