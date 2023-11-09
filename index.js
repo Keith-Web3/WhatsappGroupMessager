@@ -9,21 +9,6 @@ app.listen(port, () => {
   console.log(`Server listening on port::${port}`)
 })
 
-const MESSAGE = 'Testing whatsapp bot to message all group contacts'
-
-const excludedGroups = [
-  'csc year 1',
-  '<javascript overload/>',
-  'unilag balloting 101',
-  'airlab unilag community',
-  'jaja a006 (home of violence)',
-  'devtown dl with python #1',
-  'ejiro affiliate marketing webinar',
-  '5 high income businesses masterclass in 2023🔥🔥',
-  'gdsc mg flutter community',
-  'cs announcements',
-]
-
 const client = new Client({
   puppeteer: {
     headless: false,
@@ -42,32 +27,28 @@ client.on('ready', async () => {
   console.log('Client is ready!')
   const chats = await client.getChats()
   const groups = chats
-    .filter(chat => chat.isGroup)
+    .filter(
+      chat =>
+        chat.isGroup && chat.name.toLowerCase().includes('TARGET_GROUP_NAME')
+    )
     .map(chat => {
-      if (
-        excludedGroups.some(groupName =>
-          chat.name
-            ?.toLowerCase()
-            .trim()
-            .includes(groupName.toLowerCase().trim())
-        )
-      )
-        return null
-      return new GroupChat(client, chat)
+      const MESSAGE = `Input your message here`
+      return [new GroupChat(client, chat), MESSAGE]
     })
 
   groups.forEach(group => {
-    if (group === null) return
-    const participants = group.participants
+    const participants = group[0].participants
 
-    participants.forEach(async participant => {
+    participants.forEach(async (participant, idx) => {
+      console.log('Participant' + idx)
       const contact = await client.getContactById(participant.id._serialized)
       const chat = await contact.getChat()
 
-      const isNewChat = !!chat?.lastMessage
+      const isNewChat = !chat?.lastMessage?.body?.length
 
       if (isNewChat || !chat) return
-      await chat.sendMessage(MESSAGE)
+      console.log('Messaging participant' + idx)
+      await chat.sendMessage(group[1])
     })
   })
 })
