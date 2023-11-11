@@ -29,10 +29,10 @@ client.on('ready', async () => {
   const groups = chats
     .filter(
       chat =>
-        chat.isGroup && chat.name.toLowerCase().includes('TARGET_GROUP_NAME')
+        chat.isGroup && chat.name?.toLowerCase().includes('TARGET_GROUP_NAME')
     )
     .map(chat => {
-      const MESSAGE = `Input your message here`
+      const MESSAGE = `Enter your message here: ${chat.name}`
       return [new GroupChat(client, chat), MESSAGE]
     })
 
@@ -44,7 +44,9 @@ client.on('ready', async () => {
       const contact = await client.getContactById(participant.id._serialized)
       const chat = await contact.getChat()
 
-      const isNewChat = !chat?.lastMessage?.body?.length
+      console.log(chat?.lastMessage)
+
+      const isNewChat = chat?.lastMessage === undefined
 
       if (isNewChat || !chat) return
       console.log('Messaging participant' + idx)
